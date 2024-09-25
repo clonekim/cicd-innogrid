@@ -1,0 +1,10 @@
+{
+ :prd true
+ :port 8000
+ :graphql-schema "schema.graphqls"
+ :graphql-path "/graphql"
+ :db {:jdbc-url "jdbc:mariadb://localhost:3306/devops"
+      :jdbc-driver "org.mariadb.jdbc.Driver"
+      :username "hello"
+      :password "secret"}
+ }

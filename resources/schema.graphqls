@@ -1,0 +1,84 @@
+enum Arch {
+    SpringBoot
+    Python
+    React
+    Vue
+    Go
+}
+
+enum OSS {
+    Gitlab
+    Argo
+    Jenkins
+}
+
+type Query {
+    users(orgId: ID): [User]
+    orgs(id: Int): [Org]
+    svcs(ownerId: ID!): [Svc]
+    projects: [Project]
+    templates: [Template]
+    archTypes: [Arch]
+    resources: [Resource]
+}
+
+type Mutation {
+    NewOrg(parentId: Int, name: String!): Org
+}
+
+type Org {
+    id: ID
+    name: String
+    parent: Org
+    children: [Org]
+}
+
+type User {
+    id: ID
+    name: String
+    org: Org
+}
+
+type Svc {
+    id: ID
+    name: String
+    description: String
+    ownership: Ownership
+    projects: [Project]
+    resource: Resource
+}
+
+type Resource {
+   id: ID
+   name: String
+}
+
+type Ownership {
+    name: String
+}
+
+type Project {
+    id: ID
+    uuid: String
+    name: String
+    archType: Arch!
+    createdAt: String
+    template: Template
+}
+
+
+type ChainTool {
+    id: ID!
+    ossType: OSS!
+    name: String!
+    url: String!
+}
+
+type Template {
+    id: ID
+    name: String
+    archType: Arch
+    description: String
+    filename: String
+    filesize: Int
+}
